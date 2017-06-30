@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block body %}
+    <div class="mainStyle">
+        <h1>Bucket List</h1>
+        <p>Easy way to keep track of things you want to do.</p>
+    </div>
+    <form class="form-signin">
+        <label class="sr-only" for="username">Username:</label>
+        <input type="text" class="form-control" id="email" placeholder="Username" required>
+        <label class="sr-only" for="password">Password:</label>
+        <input type="password" class="form-control" id="email" placeholder="Password" required>
+        <div class="buttonSignStyle">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+        </div>
+    </form>
+ {% endblock %}
