@@ -64,7 +64,7 @@ class TestApplication(unittest.TestCase):
     def test_signup(self):
         self.app.signup("PaulNyondo","password")
         self.assertEqual(1, len(self.app.users))
-        self.assertTrue(isinstance(self.app.users[0],User))
+        self.assertTrue(isinstance(self.app.users['PaulNyondo']['user'],User))
     
 
 if __name__ == "__main__":
