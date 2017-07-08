@@ -44,6 +44,12 @@ class Test_User_Class(unittest.TestCase):
         self.assertEqual(self.user.username, "PaulNyondo")
         self.assertEqual(self.user.password, "password")
 
+    def test_add_bucketlist(self):
+        """ test the add_bucket list method"""
+        self.user.add_bucketlist("Adventure", 30)
+        self.assertEqual(1,len(self.user.bucket_lists))
+        self.assertTrue(isinstance(self.user.bucket_lists[0],BucketList))
+
 class TestApplication(unittest.TestCase):
     """ Tests for bucket list application """
     def setUp(self):
@@ -54,6 +60,11 @@ class TestApplication(unittest.TestCase):
         self.assertDictEqual({},self.app.users)
         self.assertFalse(self.app.authenticated)
         self.assertIsNone(self.app.current_user)
+
+    def test_signup(self):
+        self.app.signup("PaulNyondo","password")
+        self.assertEqual(1, len(self.app.users))
+        self.assertTrue(isinstance(self.app.users[0],User))
     
 
 if __name__ == "__main__":
