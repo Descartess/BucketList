@@ -2,7 +2,7 @@
 import unittest
 from app.bucketList import BucketListItem
 
-class Test_BucketListItem_Class(unittest.TestCase):
+class TestBucketListItemClass(unittest.TestCase):
     """unit test methods for Test_BucketListItem_Class """
     def setUp(self):
         """Initialisation before each test """
