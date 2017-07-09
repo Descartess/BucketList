@@ -1,25 +1,24 @@
-{% extends " base.html" %}
+{% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% block body %}
-    <h2>Paul Nyondo</h2>
+    <h2>{{ data.username }}</h2>
     <div class="subtitle">
         <p> Keep track of the things you want to do in the next years</p>
     </div>
+    {% if data.bucket_lists %}
     <ul class="list-group">
-        <li class="list-group-item">
-            Career 
-        </li>
-        <li class="list-group-item">
-            Spiritual 
-        </li>
-        <li class="list-group-item">
-            Adventure 
-        </li>
-        <li class="list-group-item">
-            Relationship
-        </li>
+        {% for bucket_list in data.bucket_lists %}
+        <a href="{{url_for('viewbucketlist',b_id = loop.index0)}}">
+        <li class="list-group-item"> {{ bucket_list.name }} </li>
+        </a>
+        {% endfor %}  
     </ul>
+    {% else %}
+        <p>You currently have no bucket lists. </p>
+    {% endif %}
+    <a href="{{ url_for('createbucketlist')}}">
     <button type="submit" class="btn btn-lg btn-primary btn-block">
         Add new bucket list
     </button>
+    </a>
 {% endblock %}
