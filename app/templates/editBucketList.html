@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block body %}
+    <h2>{{ data.username }}</h2>
+    <div class="subtitle">
+        <p> Keep track of the things you want to do in the next years</p>
+        <p> Edit Bucket List </p>
+    </div>
+    <form class="form-signin" method="POST" action="{{url_for('editbucketlist',b_id = b_id)}}">
+        <label class="sr-only" for="bucketlist" > Edit Bucket List </label>
+        <input type="text" class="form-control" value="{{data.bucket_lists[b_id].name}}" id="b_listname" placeholder="Bucket List Title" name="b_listname" required>
+        <label class="sr-only" for="bucketlist" > Enter Age to be completed by:</label>
+        <input type="number" class="form-control" value="{{data.bucket_lists[b_id].completed_by}}" id="email" placeholder="Age of completion" name="completed_by" required>
+        <button type="submit" class="btn btn-lg btn-primary btn-block">
+            Edit bucket list 
+        </button>
+    </form>
+    
+  {% endblock %}

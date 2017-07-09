@@ -1,30 +1,45 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% block body %}
-            <h2>Paul Nyondo</h2>
+            <a href="{{url_for('home')}}">
+                <button> Home</button>
+            </a>
+            <a href="{{url_for('signout')}}">
+                <button> Sign out</button>
+            </a>
+            <h2>{{data.username}}</h2>
             <div class="subtitle">
                 <h5> Keep track of the things you want to do in the next years</h5>
             </div>
-            <p> Adventure before 30</p>
+            <p> {{user_b_list.name}} goals before {{user_b_list.completed_by}}</p>
             <div class="btn-group btn-group-xs">
+                <a href="{{url_for('editbucketlist',b_id=b_id)}}">
                 <button type="button" class="btn btn-primary">Edit</button>
-                <button type="button" class="btn btn-primary">Delete</button>
+                </a>
+                <a href="{{url_for('deletebucketlist', b_id=b_id)}}">
+                <button type="button" class="btn btn-danger">Delete</button>
+                </a>
             </div>
+            {% if user_b_list.list_items %}
             <ul class="list-group">
-                <li class="list-group-item">
-                    <label><input type="checkbox" value="">Climb the Kilimanjaro</label>
-                </li>
-                <li class="list-group-item">
-                    <label><input type="checkbox" value="">Visit the great barrier reef</label>
-                </li>
-                <li class="list-group-item">
-                    <label><input type="checkbox" value=""> Go to the moon</label>
-                </li>
-                <li class="list-group-item">
-                    <label><input type="checkbox" value="">  Win the World Cup</label>
-                </li>
+                {% for bucket_list_item in user_b_list.list_items %}
+                    <li class="list-group-item">
+                        <label><input type="checkbox" value="">{{ bucket_list_item.name }}</label>
+                        <a href="{{url_for('deletebucketlistItem',b_id=b_id,item_id=loop.index0)}}">
+                            <span class="glyphicon glyphicon-trash pull-right"></span>
+                        </a>
+                        <a href="{{url_for('editbucketlistItem',b_id=b_id,item_id=loop.index0)}}">
+                            <span class="glyphicon glyphicon-pencil pull-right"></span>
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
-            <button type="submit" class="btn btn-lg btn-primary btn-block">
-                Add new bucket list item
-            </button>
+            {% else %}
+                    <p> You have no bucket list items added to this Bucket List</p>
+            {% endif %}
+            <a href="{{url_for('addbucketlistItem',b_id=b_id)}}">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                    Add new bucket list item
+                </button>
+            </a>
  {% endblock %}
