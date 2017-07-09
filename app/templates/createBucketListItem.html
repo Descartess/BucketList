@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% block body %}
-    <h2>Paul Nyondo</h2>
+    <a href="{{url_for('home')}}">
+        <button>Home</button>
+    </a>
+    <a href="{{url_for('signout')}}">
+        <button> Sign out </button>
+    </a>
+    <h2>{{ data.username }}</h2>
     <div class="subtitle">
         <p> Keep track of the things you want to do in the next years</p>
     </div>
@@ -12,6 +18,5 @@
         Add new bucket list item
         </button>
     </form>
-    
 {% endblock %}
  

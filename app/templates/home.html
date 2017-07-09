@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% block body %}
+    <a href="{{url_for('home')}}">
+        <button> Home</button>
+    </a>
+    <a href="{{url_for('signout')}}">
+        <button> Sign out</button>
+    </a>
     <h2>{{ data.username }}</h2>
     <div class="subtitle">
         <p> Keep track of the things you want to do in the next years</p>
