@@ -45,4 +45,5 @@ class Application(object):
         user = User(username, password)
         self.users[username] = { 'password': password, 'user': user }
         self.current_user = user
+        self.authenticated = True
 
