@@ -14,7 +14,7 @@ class BucketList(object):
         self.completed = False
         self.list_items = []
 
-    def add_item(self,name):
+    def add_item(self, name):
         """ add bucket list item to bucket list"""
         item = BucketListItem(name)
         self.list_items.append(item)
@@ -24,7 +24,7 @@ class User(object):
     def __init__(self, username, password):
         self.username = username
         self.password = password
-        self.bucket_lists =[]
+        self.bucket_lists = []
 
     def add_bucketlist(self, name, age):
         """ user creates bucket list """
@@ -43,7 +43,19 @@ class Application(object):
         if username in self.users:
             return "User already exists"
         user = User(username, password)
-        self.users[username] = { 'password': password, 'user': user }
+        self.users[username] = {'password': password, 'user': user}
         self.current_user = user
         self.authenticated = True
 
+    def signout(self):
+        ''' signs out authenticated user '''
+        self.current_user = None
+        self.authenticated = False
+
+    def signin(self, username, password):
+        """ signs in registered users """
+        if username in self.users:
+            if self.users[username]['password'] == password:
+                self.current_user = self.users[username]['user']
+                self.authenticated = True 
+        return 'User doesnt exist '
