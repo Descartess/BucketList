@@ -1,5 +1,5 @@
 """ Views.py """
-from flask import render_template, redirect, url_for, request 
+from flask import render_template, redirect, url_for, request
 
 from app import APP
 from bucketList import Application
@@ -11,16 +11,28 @@ def index():
     if request.method == "POST":
         global BUCKETLIST
         login_data = request.form
-        BUCKETLIST.signup(login_data['username'], login_data['password'])
+        BUCKETLIST.signin(login_data['username'], login_data['password'])
         return redirect(url_for('home',username = BUCKETLIST.current_user.username ))
     return render_template("login.html")
 
-@APP.route('/signup')
+@APP.route('/signup', methods =["POST", "GET"])
 def signup():
+    global BUCKETLIST
+    if request.method == "POST":
+        signup_data = request.form
+        if signup_data['password'] == signup_data['rpassword']:
+            BUCKETLIST.signup(signup_data['username'],signup_data['password'])
+            return redirect(url_for('home',username = BUCKETLIST.current_user.username ))
     return render_template("signup.html")
 
-@APP.route('/home/<username>')
-def home(username):
+@APP.route('/signout')
+def signout():
+    global BUCKETLIST
+    BUCKETLIST.signout()
+    return render_template("login.html")
+
+@APP.route('/home/')
+def home():
     global BUCKETLIST
     return render_template("home.html", data=BUCKETLIST.current_user)
  
@@ -49,7 +61,31 @@ def addbucketlistItem(b_id):
         user_b_list = BUCKETLIST.current_user.bucket_lists[b_id]
         user_b_list.add_item(item)
         return redirect(url_for('viewbucketlist',b_id = b_id))
-    return render_template("createBucketListItem.html", b_id=b_id)
+    return render_template("createBucketListItem.html", b_id=b_id, data=BUCKETLIST.current_user)
+
+@APP.route('/home/bucketlist/<int:b_id>/del')
+def deletebucketlist(b_id):
+    global BUCKETLIST
+    BUCKETLIST.current_user.delete_bucketlist(b_id)
+    return render_template("home.html", data=BUCKETLIST.current_user)
+
+@APP.route('/home/bucketlist/<int:b_id>/edit', methods= ["POST", "GET"])
+def editbucketlist(b_id):
+    global BUCKETLIST
+    if request.method == "POST":
+        edit_data = request.form
+        BUCKETLIST.current_user.edit_bucketlist(b_id,edit_data["b_listname"],int(edit_data["completed_by"]))
+        return render_template("home.html", data=BUCKETLIST.current_user)
+    return render_template("editBucketList.html", data=BUCKETLIST.current_user,b_id=b_id)
+
+@APP.route('/home/bucketlist/<int:b_id>/item/<int:item_id>')
+def deletebucketlistItem(b_id,item_id):
+    global BUCKETLIST
+    BUCKETLIST.current_user.bucket_lists[b_id].delete_bucketlistitem(item_id)
+    return redirect(url_for('viewbucketlist',b_id=b_id))
+
+
+
 
 
 
