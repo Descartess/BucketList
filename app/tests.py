@@ -65,6 +65,17 @@ class TestApplication(unittest.TestCase):
         self.app.signup("PaulNyondo","password")
         self.assertEqual(1, len(self.app.users))
         self.assertTrue(isinstance(self.app.users['PaulNyondo']['user'],User))
+
+    def test_signout(self):
+        self.app.signout()
+        self.assertIsNone(self.app.current_user)
+        self.assertFalse(self.app.authenticated)
+
+    def test_signin(self):
+        self.app.signup("PaulNyondo", "password")
+        self.app.signout()
+        self.app.signin("PaulNyondo", "password")
+        self.assertEqual("PaulNyondo",self.app.current_user.username)
     
 
 if __name__ == "__main__":
