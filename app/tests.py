@@ -1,4 +1,4 @@
-""" unittests for bucketlist item tests"""
+""" unittests for bucketlist application tests"""
 import unittest
 from bucketList import BucketListItem, BucketList, Application, User
 
@@ -29,8 +29,14 @@ class Test_BucketList_Class(unittest.TestCase):
     def test_add_item(self):
         """ test the add_item method"""
         self.blist.add_item("Road trip across the country")
-        self.assertEqual(1,len(self.blist.list_items))
-        self.assertTrue(isinstance(self.blist.list_items[0],BucketListItem))
+        self.assertEqual(1, len(self.blist.list_items))
+        self.assertTrue(isinstance(self.blist.list_items[0], BucketListItem))
+
+    def test_delete_bucketlistitem(self):
+        """ test the delete_bucketlistitem method"""
+        self.blist.add_item("Road trip across the country")
+        self.blist.delete_bucketlistitem(0)
+        self.assertEqual([], self.blist.list_items)
 
 
 class Test_User_Class(unittest.TestCase):
@@ -52,9 +58,12 @@ class Test_User_Class(unittest.TestCase):
 
     def test_delete_bucketlist(self):
         """ test deletion of bucket list"""
-        pass
+        self.user.add_bucketlist("Adventure", 30)
+        self.user.delete_bucketlist(0)
+        self.assertEqual([], self.user.bucket_lists)
 
     def test_edit_bucketlist(self):
+        
         """ test editing of bucket list """
         pass 
 
