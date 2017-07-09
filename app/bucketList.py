@@ -19,6 +19,10 @@ class BucketList(object):
         item = BucketListItem(name)
         self.list_items.append(item)
 
+    def delete_bucketlistitem(self, b_id):
+        """ removes bucketlist item"""
+        del self.list_items[b_id]
+
 class User(object):
     """ user class  and methods"""
     def __init__(self, username, password):
@@ -30,6 +34,15 @@ class User(object):
         """ user creates bucket list """
         bucket_list = BucketList(name, age)
         self.bucket_lists.append(bucket_list)
+
+    def delete_bucketlist(self,b_id):
+        """ removes bucket list from bucket lists """
+        del self.bucket_lists[b_id]
+
+    def edit_bucketlist(self, b_id, name, completed_by):
+        """ edit bucket list entries """
+        self.bucket_lists[b_id].name = name
+        self.bucket_lists[b_id].completed_by = completed_by
 
 class Application(object):
     """main class and methods """
