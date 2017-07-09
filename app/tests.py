@@ -72,6 +72,7 @@ class TestApplication(unittest.TestCase):
         self.assertFalse(self.app.authenticated)
 
     def test_signin(self):
+        """test authentication flow of user sign in and sign up """
         self.app.signup("PaulNyondo", "password")
         self.app.signout()
         self.app.signin("PaulNyondo", "password")
