@@ -23,6 +23,10 @@ class BucketList(object):
         """ removes bucketlist item"""
         del self.list_items[b_id]
 
+    def edit_bucketlistitem(self,b_id, name):
+        """ edits bucket list item """
+        self.list_items[b_id].name = name
+
 class User(object):
     """ user class  and methods"""
     def __init__(self, username, password):
