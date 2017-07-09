@@ -50,6 +50,14 @@ class Test_User_Class(unittest.TestCase):
         self.assertEqual(1,len(self.user.bucket_lists))
         self.assertTrue(isinstance(self.user.bucket_lists[0],BucketList))
 
+    def test_delete_bucketlist(self):
+        """ test deletion of bucket list"""
+        pass
+
+    def test_edit_bucketlist(self):
+        """ test editing of bucket list """
+        pass 
+
 class TestApplication(unittest.TestCase):
     """ Tests for bucket list application """
     def setUp(self):
@@ -57,16 +65,19 @@ class TestApplication(unittest.TestCase):
         self.app = Application()
 
     def test_init(self):
+        """ test class initialisation """
         self.assertDictEqual({},self.app.users)
         self.assertFalse(self.app.authenticated)
         self.assertIsNone(self.app.current_user)
 
     def test_signup(self):
+        """ test user sign up"""
         self.app.signup("PaulNyondo","password")
         self.assertEqual(1, len(self.app.users))
         self.assertTrue(isinstance(self.app.users['PaulNyondo']['user'],User))
 
     def test_signout(self):
+        """ test user sign out"""
         self.app.signout()
         self.assertIsNone(self.app.current_user)
         self.assertFalse(self.app.authenticated)
