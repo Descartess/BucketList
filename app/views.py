@@ -1,9 +1,10 @@
 """ Views.py """
 from flask import render_template, redirect, url_for, request, Blueprint
+from bucket_list import Application
 
 app_blueprint = Blueprint('app_blueprint',__name__)
 
-from bucket_list import Application
+
 
 BUCKETLIST = Application()
 
@@ -13,7 +14,7 @@ def index():
     if request.method == "POST":
         login_data = request.form
         BUCKETLIST.signin(login_data['username'], login_data['password'])
-        return redirect(url_for('home', username=BUCKETLIST.current_user.username))
+        return redirect(url_for('app_blueprint.home', username=BUCKETLIST.current_user.username))
     return render_template("login.html")
 
 @app_blueprint.route('/signup', methods=["POST", "GET"])
@@ -23,7 +24,7 @@ def signup():
         signup_data = request.form
         if signup_data['password'] == signup_data['rpassword']:
             BUCKETLIST.signup(signup_data['username'], signup_data['password'])
-            return redirect(url_for('home', username=BUCKETLIST.current_user.username))
+            return redirect(url_for('app_blueprint.home', username=BUCKETLIST.current_user.username))
     return render_template("signup.html")
 
 @app_blueprint.route('/signout')
@@ -44,7 +45,7 @@ def createbucketlist():
         bucketlist = request.form
         BUCKETLIST.current_user.add_bucketlist(bucketlist['b_listname'],
                                                int(bucketlist['completed_by']))
-        return redirect(url_for('home', username=BUCKETLIST.current_user.username))
+        return redirect(url_for('app_blueprint.home', username=BUCKETLIST.current_user.username))
     return render_template("createBucketList.html", data=BUCKETLIST.current_user)
 
 @app_blueprint.route('/home/bucketlist/<int:b_id>')
@@ -62,7 +63,7 @@ def addbucketlistitem(b_id):
         item = list_item['blist_item']
         user_b_list = BUCKETLIST.current_user.bucket_lists[b_id]
         user_b_list.add_item(item)
-        return redirect(url_for('viewbucketlist', b_id=b_id))
+        return redirect(url_for('app_blueprint.viewbucketlist', b_id=b_id))
     return render_template("createBucketListItem.html", b_id=b_id, data=BUCKETLIST.current_user)
 
 @app_blueprint.route('/home/bucketlist/<int:b_id>/del')
@@ -85,7 +86,7 @@ def editbucketlist(b_id):
 def deletebucketlistitem(b_id, item_id):
     """ delete bucket list item """
     BUCKETLIST.current_user.bucket_lists[b_id].delete_bucketlistitem(item_id)
-    return redirect(url_for('viewbucketlist', b_id=b_id))
+    return redirect(url_for('app_blueprint.viewbucketlist', b_id=b_id))
 
 @app_blueprint.route('/home/bucketlist/<int:b_id>/item/<int:item_id>/edit', methods=["POST", "GET"])
 def editbucketlistitem(b_id, item_id):
@@ -96,6 +97,6 @@ def editbucketlistitem(b_id, item_id):
         list_item = BUCKETLIST.current_user.bucket_lists[b_id]
         edit_data = request.form
         list_item.edit_bucketlistitem(item_id, edit_data['blist_item'])
-        return redirect(url_for('viewbucketlist', b_id=b_id))
+        return redirect(url_for('app_blueprint.viewbucketlist', b_id=b_id))
     return render_template("editBucketListItem.html", b_id=b_id, item_id=item_id,
                            data=BUCKETLIST.current_user)

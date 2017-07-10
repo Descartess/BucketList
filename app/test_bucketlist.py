@@ -1,6 +1,6 @@
 """ unittests for bucketlist application tests"""
 import unittest
-from bucket_list import BucketListItem, BucketList, Application, User
+from app.bucket_list import BucketListItem, BucketList, Application, User
 
 class TestBucketListItemClass(unittest.TestCase):
     """unit test methods for Test_BucketListItem_Class """
