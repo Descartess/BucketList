@@ -7,4 +7,5 @@ APP = Flask(__name__)
 
 # from app import views
 APP.register_blueprint(app_blueprint)
-APP.config.from_object('config')
+
+APP.config['DEBUG'] = True
