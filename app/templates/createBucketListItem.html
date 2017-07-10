@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% block body %}
-    <a href="{{url_for('home')}}">
+    <a href="{{url_for('app_blueprint.home')}}">
         <button>Home</button>
     </a>
-    <a href="{{url_for('signout')}}">
+    <a href="{{url_for('app_blueprint.signout')}}">
         <button> Sign out </button>
     </a>
     <h2>{{ data.username }}</h2>
     <div class="subtitle">
         <p> Keep track of the things you want to do in the next years</p>
     </div>
-    <form class="form-group" method="POST" action="{{url_for('addbucketlistItem',b_id=b_id)}}">
+    <form class="form-group" method="POST" action="{{url_for('app_blueprint.addbucketlistItem',b_id=b_id)}}">
         <label for="comment">Create Bucket List Item:</label>
         <textarea class="form-control" rows="5" id="comment" name="blist_item"></textarea>
         <button type="submit" class="btn btn-lg btn-primary btn-block">

@@ -5,6 +5,12 @@ class BucketListItem(object):
     def __init__(self, name):
         self.name = name
         self.completed = False
+    def get_status(self):
+        """ return current completion status """
+        return self.completed
+    def change_status(self):
+        """ change the state of  current completion status """
+        self.completed = not self.completed
 
 class BucketList(object):
     """ bucket list class and methods """
