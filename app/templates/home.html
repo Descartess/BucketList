@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% block body %}
-    <a href="{{url_for('home')}}">
+    <a href="{{url_for('app_blueprint.home')}}">
         <button> Home</button>
     </a>
-    <a href="{{url_for('signout')}}">
+    <a href="{{url_for('app_blueprint.signout')}}">
         <button> Sign out</button>
     </a>
     <h2>{{ data.username }}</h2>
@@ -14,7 +14,7 @@
     {% if data.bucket_lists %}
     <ul class="list-group">
         {% for bucket_list in data.bucket_lists %}
-        <a href="{{url_for('viewbucketlist',b_id = loop.index0)}}">
+        <a href="{{url_for('app_blueprint.viewbucketlist',b_id = loop.index0)}}">
         <li class="list-group-item"> {{ bucket_list.name }} </li>
         </a>
         {% endfor %}  
@@ -22,7 +22,7 @@
     {% else %}
         <p>You currently have no bucket lists. </p>
     {% endif %}
-    <a href="{{ url_for('createbucketlist')}}">
+    <a href="{{ url_for('app_blueprint.createbucketlist')}}">
     <button type="submit" class="btn btn-lg btn-primary btn-block">
         Add new bucket list
     </button>

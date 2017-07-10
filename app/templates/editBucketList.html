@@ -6,7 +6,7 @@
         <p> Keep track of the things you want to do in the next years</p>
         <p> Edit Bucket List </p>
     </div>
-    <form class="form-signin" method="POST" action="{{url_for('editbucketlist',b_id = b_id)}}">
+    <form class="form-signin" method="POST" action="{{url_for('app_blueprint.editbucketlist',b_id = b_id)}}">
         <label class="sr-only" for="bucketlist" > Edit Bucket List </label>
         <input type="text" class="form-control" value="{{data.bucket_lists[b_id].name}}" id="b_listname" placeholder="Bucket List Title" name="b_listname" required>
         <label class="sr-only" for="bucketlist" > Enter Age to be completed by:</label>

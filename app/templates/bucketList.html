@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% block body %}
-            <a href="{{url_for('home')}}">
+            <a href="{{url_for('app_blueprint.home')}}">
                 <button> Home</button>
             </a>
-            <a href="{{url_for('signout')}}">
+            <a href="{{url_for('app_blueprint.signout')}}">
                 <button> Sign out</button>
             </a>
             <h2>{{data.username}}</h2>
@@ -13,10 +13,10 @@
             </div>
             <p> {{user_b_list.name}} goals before {{user_b_list.completed_by}}</p>
             <div class="btn-group btn-group-xs">
-                <a href="{{url_for('editbucketlist',b_id=b_id)}}">
+                <a href="{{url_for('app_blueprint.editbucketlist',b_id=b_id)}}">
                 <button type="button" class="btn btn-primary">Edit</button>
                 </a>
-                <a href="{{url_for('deletebucketlist', b_id=b_id)}}">
+                <a href="{{url_for('app_blueprint.deletebucketlist', b_id=b_id)}}">
                 <button type="button" class="btn btn-danger">Delete</button>
                 </a>
             </div>
@@ -25,10 +25,10 @@
                 {% for bucket_list_item in user_b_list.list_items %}
                     <li class="list-group-item">
                         <label><input type="checkbox" value="">{{ bucket_list_item.name }}</label>
-                        <a href="{{url_for('deletebucketlistItem',b_id=b_id,item_id=loop.index0)}}">
+                        <a href="{{url_for('app_blueprint.deletebucketlistitem',b_id=b_id,item_id=loop.index0)}}">
                             <span class="glyphicon glyphicon-trash pull-right"></span>
                         </a>
-                        <a href="{{url_for('editbucketlistItem',b_id=b_id,item_id=loop.index0)}}">
+                        <a href="{{url_for('app_blueprint.editbucketlistitem',b_id=b_id,item_id=loop.index0)}}">
                             <span class="glyphicon glyphicon-pencil pull-right"></span>
                         </a>
                     </li>
@@ -37,7 +37,7 @@
             {% else %}
                     <p> You have no bucket list items added to this Bucket List</p>
             {% endif %}
-            <a href="{{url_for('addbucketlistItem',b_id=b_id)}}">
+            <a href="{{url_for('app_blueprint.addbucketlistItem',b_id=b_id)}}">
                 <button type="submit" class="btn btn-lg btn-primary btn-block">
                     Add new bucket list item
                 </button>
