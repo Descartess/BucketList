@@ -1,30 +1,56 @@
-{% extends "base.html" %}
+{% extends "base_2.html" %}
 {% block title %} Home {% endblock %}
 {% block body %}
-    <a href="{{url_for('app_blueprint.home')}}">
-        <button> Home</button>
-    </a>
-    <a href="{{url_for('app_blueprint.signout')}}">
-        <button> Sign out</button>
-    </a>
-    <h2>{{ data.username }}</h2>
-    <div class="subtitle">
-        <p> Keep track of the things you want to do in the next years</p>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>{{ data.username }}</h3>
+                </div>
+                <div class="panel-body">
+                    <p> Keep track of the things you want to do in the next years</p>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Shared with you
+                </div>
+                <div class="panel-body">
+                    <p> No bucket lists have been shared with you. </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Bucket Lists
+                </div>
+                <div class="panel-body">
+                    {% if data.bucket_lists %}
+                    <ul class="list-group">
+                        {% for bucket_list in data.bucket_lists %}
+                        <a href="{{url_for('app_blueprint.viewbucketlist',b_id = loop.index0)}}">
+                        <li class="list-group-item"> {{ bucket_list.name }} </li>
+                        </a>
+                        {% endfor %}  
+                    </ul>
+                    {% else %}
+                        <p>You currently have no bucket lists. </p>
+                    {% endif %}
+                    <a href="{{ url_for('app_blueprint.createbucketlist')}}">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">
+                            Add new bucket list
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    {% if data.bucket_lists %}
-    <ul class="list-group">
-        {% for bucket_list in data.bucket_lists %}
-        <a href="{{url_for('app_blueprint.viewbucketlist',b_id = loop.index0)}}">
-        <li class="list-group-item"> {{ bucket_list.name }} </li>
-        </a>
-        {% endfor %}  
-    </ul>
-    {% else %}
-        <p>You currently have no bucket lists. </p>
-    {% endif %}
-    <a href="{{ url_for('app_blueprint.createbucketlist')}}">
-    <button type="submit" class="btn btn-lg btn-primary btn-block">
-        Add new bucket list
-    </button>
-    </a>
+    <script>
+        $(document).ready(function(){
+            $('.carousel').carousel({
+                interval: 3000
+            })
+        });
+    </script>
 {% endblock %}

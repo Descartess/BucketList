@@ -5,11 +5,20 @@
     flex-direction: column;
     /*color: white;*/
 }
- body{
-     padding-top: 10px;
-     /*background-color: lightseagreen;*/
-
- }
+body{
+    background: url(../images/bucketlist.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.form-spacing{
+    padding-top: 15px
+}
+.jumbotron{
+    opacity: 0.8;
+    color:black;
+}
 .content {
     max-width: 1000px;
     /*background-color: lightseagreen;*/
@@ -19,6 +28,9 @@
 }
 .mainStyle {
     margin: 0 auto;
+}
+.panel-default {
+    opacity: 0.8;
 }
 .form-signin{
     max-width: 330px;

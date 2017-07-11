@@ -1,18 +1,30 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% block body %}
-        <div class="mainStyle">
-            <h1>Bucket List</h1>
-            <p>Easy way to keep track of things you want to do.</p>
+    <div class="row">
+        <div class="col-sm-8">   
+            <div class="jumbotron">
+                <h1>Bucket List</h1>
+                <p>Easy way to keep track of things you want to do.</p>
+            </div>
         </div>
+        <div class="col-sm-4">
         <form class="form-signin" method="POST" action="{{ url_for('app_blueprint.signup')}}">
-            <label class="sr-only" for="username">Username:</label>
-            <input type="text" class="form-control" id="email" placeholder="Username" required name="username">
-            <label class="sr-only" for="password">Password:</label>
-            <input type="password" class="form-control" id="email" placeholder="Password" required name="password">
-            <input type="password" class="form-control" id="email" placeholder="Repeat Password" required name="rpassword">
+            <div class>
+                <label class="sr-only" for="username">Username:</label>
+                <input type="text" class="form-control" id="email" placeholder="Username" required name="username">
+            </div>
+            <div class="form-spacing">
+                <label class="sr-only" for="password">Password:</label>
+                <input type="password" class="form-control" id="email" placeholder="Password" required name="password">
+            </div>
+            <div class="form-spacing">
+                <input type="password" class="form-control" id="email" placeholder="Repeat Password" required name="rpassword">
+            </div>
             <div class="buttonSignStyle">
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
             </div>
         </form>
+        </div>
+    </div>
   {% endblock %}
