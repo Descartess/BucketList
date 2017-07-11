@@ -4,3 +4,6 @@ venv/Lib
 venv/Scripts
 venv/tcl
 *.pyc
+*.bmpr
+*.coverage
+
