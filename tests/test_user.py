@@ -26,8 +26,11 @@ class Test_User_Class(unittest.TestCase):
         self.assertEqual([], self.user.bucket_lists)
 
     def test_edit_bucketlist(self):
-        
         """ test editing of bucket list """
-        pass 
+        self.user.add_bucketlist("Adventure", 30)
+        self.user.edit_bucketlist(0,"Family", 35)
+        self.assertEqual(self.user.bucket_lists[0].name, "Family")
+        self.assertEqual(self.user.bucket_lists[0].completed_by, 35)
+        
 if __name__ == "__main__":
     unittest.main()
