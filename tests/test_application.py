@@ -1,6 +1,6 @@
 """ unittests for bucketlist application tests"""
 import unittest
-from ..app.bucket_list import Application, User
+from ..app.bucket_list import BucketListApp, User
 
 class TestApplication(unittest.TestCase):
     """ Tests for bucket list application """
