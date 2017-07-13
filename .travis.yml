@@ -12,6 +12,5 @@ install:
 script:
   - nosetests --with-coverage --cover-package=app
 
-after_success:
-  -coveralls
+after_success: coveralls
   
