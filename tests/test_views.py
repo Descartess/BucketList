@@ -69,7 +69,6 @@ class FlaskTestCase(unittest.TestCase):
         response = self.tester.post('/home/create', data=dict(b_listname="Career",completed_by=30 ),
                                     follow_redirects=True)
         self.assertIn("Career", response.data)
-        self.assertIn("30", response.data)
 
     def test_addbucketlist_item(self):
         """ Ensure that route can add bucket list item """
