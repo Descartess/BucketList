@@ -1,7 +1,7 @@
 #  app/__init__.py
 """ Initialization file """
 from flask import Flask
-from views import app_blueprint
+from app.views import app_blueprint
 
 APP = Flask(__name__)
 
