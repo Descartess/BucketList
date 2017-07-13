@@ -63,11 +63,12 @@ class Application(object):
     def signup(self, username, password):
         ''' Adds signed up user to global dict of users '''
         if username in self.users:
-            return "User already exists"
+            return False
         user = User(username, password)
         self.users[username] = {'password': password, 'user': user}
         self.current_user = user
         self.authenticated = True
+        return True
 
     def signout(self):
         ''' signs out authenticated user '''
@@ -80,4 +81,5 @@ class Application(object):
             if self.users[username]['password'] == password:
                 self.current_user = self.users[username]['user']
                 self.authenticated = True
-        return 'User doesnt exist '
+                return True
+        return False

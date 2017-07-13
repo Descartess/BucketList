@@ -5,24 +5,31 @@
         <div class="col-sm-8">
             <div class="jumbotron">
                 <h1>Bucket List</h1>
-                <p>Easy way to keep track of things you want to do.</p>
+                <p>Track, Record and Share things you want to do before a certain age.</p>
             </div>
         </div>
         <div class="col-sm-4">
-            <form class="form-group" method="POST" action="/">
-                <div class="form-spacing">
-                <label class="sr-only" for="username" >Username:</label>
-                <input type="text" class="form-control" id="email" placeholder="Username" name="username" required>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                <form class="form-group" method="POST" action="/">
+                    <div class="form-spacing">
+                    <label class="sr-only" for="username" >Username:</label>
+                    <input type="text" class="form-control" id="email" placeholder="Username" name="username" required>
+                    </div>
+                    <div class="form-spacing">
+                    <label class="sr-only" for="password">Password:</label>
+                    <input type="password" class="form-control" id="email" placeholder="Password" name="password" required>
+                    </div>
+                    {% if error %}
+                        <p class="error">{{error}}</p>
+                    {% endif %}
+                    <div class="buttonSignStyle">
+                        <button type="submit" class="btn btn-md btn-primary ">Submit</button>
+                    </div>
+                </form>
+                <a href="{{url_for('app_blueprint.signup')}}">Sign Up Here</a>
                 </div>
-                <div class="form-spacing">
-                <label class="sr-only" for="password">Password:</label>
-                <input type="password" class="form-control" id="email" placeholder="Password" name="password" required>
-                </div>
-                <div class="buttonSignStyle">
-                    <button type="submit" class="btn btn-md btn-primary ">Submit</button>
-                </div>
-            </form>
-            <a href="{{url_for('app_blueprint.signup')}}">Sign Up Here</a>
+            </div>
         </div>
     </div>
  {% endblock %}

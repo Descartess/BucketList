@@ -2,7 +2,7 @@
 from flask import render_template, redirect, url_for, request, Blueprint
 from bucket_list import Application
 
-app_blueprint = Blueprint('app_blueprint',__name__)
+app_blueprint = Blueprint('app_blueprint', __name__)
 
 
 
@@ -13,8 +13,10 @@ def index():
     """ initial application path """
     if request.method == "POST":
         login_data = request.form
-        BUCKETLIST.signin(login_data['username'], login_data['password'])
-        return redirect(url_for('app_blueprint.home', username=BUCKETLIST.current_user.username))
+        if BUCKETLIST.signin(login_data['username'], login_data['password']):
+            return redirect(url_for('app_blueprint.home',
+                                    username=BUCKETLIST.current_user.username))
+        return render_template("login.html", error="Invalid Credentials")
     return render_template("login.html")
 
 @app_blueprint.route('/signup', methods=["POST", "GET"])
@@ -23,8 +25,12 @@ def signup():
     if request.method == "POST":
         signup_data = request.form
         if signup_data['password'] == signup_data['rpassword']:
-            BUCKETLIST.signup(signup_data['username'], signup_data['password'])
-            return redirect(url_for('app_blueprint.home', username=BUCKETLIST.current_user.username))
+            if BUCKETLIST.signup(signup_data['username'], signup_data['password']):
+                return redirect(url_for('app_blueprint.home',
+                                        username=BUCKETLIST.current_user.username))
+            else:
+                return render_template("signup.html", error = "User already exists ")
+        return render_template("signup.html", error = "Passwords do not match")
     return render_template("signup.html")
 
 @app_blueprint.route('/signout')

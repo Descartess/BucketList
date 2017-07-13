@@ -33,6 +33,11 @@ class TestApplication(unittest.TestCase):
         self.app.signin("PaulNyondo", "password")
         self.assertEqual("PaulNyondo",self.app.current_user.username)
 
+    def test_signup_user_exists(self):
+        """ ensure that no duplicate user names"""
+        self.app.signup("PaulNyondo", "password")
+        self.assertFalse(self.app.signup("PaulNyondo", "password"))
+        
 if __name__ == "__main__":
     unittest.main()
     

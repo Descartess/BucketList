@@ -5,5 +5,5 @@ venv/Scripts
 venv/tcl
 *.pyc
 *.bmpr
-*.coverage
+cover/
 

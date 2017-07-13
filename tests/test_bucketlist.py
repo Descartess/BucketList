@@ -27,5 +27,12 @@ class Test_BucketList_Class(unittest.TestCase):
         self.blist.delete_bucketlistitem(0)
         self.assertEqual([], self.blist.list_items)
 
+    def test_edit_bucketlistitem(self):
+        """ ensure that bucketlist item is edited """
+        self.blist.add_item("Road trip across the country")
+        self.blist.edit_bucketlistitem(0, "Climb Mt. Kilimanjaro")
+        self.assertEqual("Climb Mt. Kilimanjaro", self.blist.list_items[0].name)
+
+
 if __name__ == "__main__":
     unittest.main()
