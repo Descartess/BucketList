@@ -53,7 +53,7 @@ class User(object):
         self.bucket_lists[b_id].name = name
         self.bucket_lists[b_id].completed_by = completed_by
 
-class Application(object):
+class BucketListApp(object):
     """main class and methods """
     def __init__(self):
         self.users = {}
