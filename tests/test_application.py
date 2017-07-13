@@ -6,7 +6,7 @@ class TestApplication(unittest.TestCase):
     """ Tests for bucket list application """
     def setUp(self):
         """ Generate essential parameters required for Tests to run """
-        self.app = Application()
+        self.app = BucketListApp()
 
     def test_init(self):
         """ test class initialisation """
