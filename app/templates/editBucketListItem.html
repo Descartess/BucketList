@@ -19,8 +19,8 @@
             </div>
             <div class="panel-body">
                 <form class="form-group" method="POST" action="{{url_for('app_blueprint.editbucketlistitem',b_id=b_id,item_id=item_id)}}">
-                    <textarea class="form-control" rows="5" id="comment" name="blist_item" value ="{{data.bucket_lists[b_id].list_items[item_id].name}}">
-                    </textarea>
+                    <input class="form-control" rows="5" id="comment" name="blist_item" value ="{{data.bucket_lists[b_id].list_items[item_id].name}}">
+                    </input>
                     <div class='form-spacing'>
                         <button type="submit" class="btn btn-lg btn-primary btn-block">
                         Edit bucket list item
