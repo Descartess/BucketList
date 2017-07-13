@@ -10,13 +10,13 @@ class TestApplication(unittest.TestCase):
 
     def test_init(self):
         """ test class initialisation """
-        self.assertDictEqual({},self.app.users)
+        self.assertDictEqual({}, self.app.users)
         self.assertFalse(self.app.authenticated)
         self.assertIsNone(self.app.current_user)
 
     def test_signup(self):
         """ test user sign up"""
-        self.app.signup("PaulNyondo","password")
+        self.app.signup("PaulNyondo", "password")
         self.assertEqual(1, len(self.app.users))
         self.assertTrue(isinstance(self.app.users['PaulNyondo']['user'], User))
 
@@ -31,7 +31,7 @@ class TestApplication(unittest.TestCase):
         self.app.signup("PaulNyondo", "password")
         self.app.signout()
         self.app.signin("PaulNyondo", "password")
-        self.assertEqual("PaulNyondo",self.app.current_user.username)
+        self.assertEqual("PaulNyondo", self.app.current_user.username)
 
     def test_signup_user_exists(self):
         """ ensure that no duplicate user names"""
