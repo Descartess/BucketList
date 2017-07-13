@@ -1,12 +1,10 @@
 """ Views.py """
 from flask import render_template, redirect, url_for, request, Blueprint
-from bucket_list import Application
+from bucket_list import BucketListApp
 
 app_blueprint = Blueprint('app_blueprint', __name__)
 
-
-
-BUCKETLIST = Application()
+BUCKETLIST = BucketListApp()
 
 @app_blueprint.route('/', methods=['POST', 'GET'])
 def index():
@@ -28,9 +26,8 @@ def signup():
             if BUCKETLIST.signup(signup_data['username'], signup_data['password']):
                 return redirect(url_for('app_blueprint.home',
                                         username=BUCKETLIST.current_user.username))
-            else:
-                return render_template("signup.html", error = "User already exists ")
-        return render_template("signup.html", error = "Passwords do not match")
+            return render_template("signup.html", error="User already exists ")
+        return render_template("signup.html", error="Passwords do not match")
     return render_template("signup.html")
 
 @app_blueprint.route('/signout')
