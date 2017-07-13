@@ -7,7 +7,7 @@ class FlaskTestCase(unittest.TestCase):
     """ unit test for index route """
     def setUp(self):
         self.tester = APP.test_client(self)
-        BUCKETLIST.signup('newuser','1')
+        BUCKETLIST.signup('newuser', '1')
         
     def test_index(self):
         """ Ensure route / returns 200 """
@@ -30,8 +30,8 @@ class FlaskTestCase(unittest.TestCase):
     def test_incorrect_signup(self):
         """ Ensure that application returns error  on mismatch passwords"""
         response = self.tester.post('/signup',
-                                data=dict(username="Paul", password="1", rpassword="2"),
-                                follow_redirects=True)
+                                    data=dict(username="Paul", password="1", rpassword="2"),
+                                    follow_redirects=True)
         self.assertIn("Passwords do not match", response.data)
 
     def test_correct_signin(self):
@@ -82,12 +82,6 @@ class FlaskTestCase(unittest.TestCase):
         BUCKETLIST.current_user.add_bucketlist("Health", 30)
         response = self.tester.get('/home/bucketlist/0/add', content_type="html/text")
         self.assertIn("newuser", response.data)
-    
-
-    
-
-    
-
     
 if __name__ == "__main__":
     unittest.main()
