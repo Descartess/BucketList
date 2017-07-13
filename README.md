@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Descartess/BucketList.svg?branch=master)](https://travis-ci.org/Descartess/BucketList)
-[![Coverage Status](https://coveralls.io/repos/github/Descartess/BucketList/badge.svg?branch=master)](https://coveralls.io/github/Descartess/BucketList?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Descartess/BucketList/badge.svg)](https://coveralls.io/github/Descartess/BucketList)
 [![Code Climate](https://codeclimate.com/github/Descartess/BucketList/badges/gpa.svg)](https://codeclimate.com/github/Descartess/BucketList)
 # BucketList
 Python Flask application to helps one keep track of things one wants to do before a certain age. 
