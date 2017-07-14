@@ -1,6 +1,6 @@
 """ Views.py """
 from flask import render_template, redirect, url_for, request, Blueprint
-from app.bucket_list import Application
+from .bucket_list import Application
 
 app_blueprint = Blueprint('app_blueprint', __name__)
 
