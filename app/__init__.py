@@ -8,4 +8,4 @@ APP = Flask(__name__)
 # from app import views
 APP.register_blueprint(app_blueprint)
 
-APP.config['DEBUG'] = True
+APP.config['DEBUG'] = False
