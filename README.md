@@ -4,6 +4,9 @@
 # BucketList
 **BucketList** is a web application designed to help one to record, edit, update activities one desires to accomplish before reaching a certain age.
 
+The application can be accessed from 
+https://bucket-list-nyondo.herokuapp.com/
+
 ## Technologies
 1. Python 2.7
 2. Flask 0.12.2
